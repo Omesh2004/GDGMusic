@@ -90,4 +90,11 @@ python app.py
 cd ../client
 npm install
 npm run dev
+
+in the client folder create a .env.local file and it should have
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=**************
+CLERK_SECRET_KEY=*************
+NEXT_PUBLIC_API_URL=http://127.0.0.1:5000
+
+
 ```

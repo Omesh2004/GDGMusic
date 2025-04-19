@@ -393,40 +393,38 @@ export default function InstrumentsPage() {
   }
 
   const handleConfirmSave = async () => {
-    if (!user?.id) return;
+    if (!user?.id) return
 
     try {
-        const newIndex = savedCount + 1;
-        const fileName = `generated${user.id}_${newIndex}.mp3`; // Now includes .mp3 extension
-        console.log(`Saving file as: ${fileName}`);
-        
-        // Assuming you have the MP3 audio blob available
-        // const audioBlob = currentAudioBlob; // Your MP3 audio data
-        
-        const formData = new FormData();
-        formData.append('audio', fileName); // Use the full filename with .mp3
-        
-        const response = await fetch(`${API_URL}/generate-save/${user.id}`, {
-            method: "POST",
-            body: formData, // Let browser set Content-Type with boundary
-        });
+      const newIndex = savedCount + 1
+      const fileName = `generated${user.id}_${newIndex}.mp3` // Now includes .mp3 extension
+      console.log(`Saving file as: ${fileName}`)
 
-        if (!response.ok) {
-            throw new Error(`Server error: ${response.status}`);
-        }
+      // Assuming you have the MP3 audio blob available
+      // const audioBlob = currentAudioBlob; // Your MP3 audio data
 
-        const result = await response.json();
-        console.log('Save successful:', result);
-        
-        setSavedCount(newIndex);
-        setShowSaveModal(false);
-        
-        
+      const formData = new FormData()
+      formData.append("audio", fileName) // Use the full filename with .mp3
+
+      const response = await fetch(`${API_URL}/generate-save/${user.id}`, {
+        method: "POST",
+        body: formData, // Let browser set Content-Type with boundary
+      })
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`)
+      }
+
+      const result = await response.json()
+      console.log("Save successful:", result)
+
+      setSavedCount(newIndex)
+      setShowSaveModal(false)
     } catch (error) {
-        console.error('Error saving audio:', error);       
-        // Consider keeping modal open on error
+      console.error("Error saving audio:", error)
+      // Consider keeping modal open on error
     }
-};
+  }
 
   const handleGenerateMusic = async () => {
     // This function would call your music generation API
@@ -468,7 +466,7 @@ export default function InstrumentsPage() {
   }
 
   return (
-    <motion.div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8">
+    <motion.div className="min-h-screen bg-black text-white p-8">
       <motion.h1
         className="text-5xl font-bold mb-12 text-center tracking-tight"
         whileHover={{ scale: 1.02 }}
@@ -532,6 +530,19 @@ export default function InstrumentsPage() {
       </motion.div>
 
       {/* Analysis Results Display */}
+      {loading && (
+        <motion.div
+          className="mb-12 p-6 bg-gray-800 rounded-xl shadow-xl flex justify-center items-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="flex flex-col items-center">
+            <div className="w-16 h-16 border-4 border-t-transparent border-blue-500 rounded-full animate-spin mb-4"></div>
+            <p className="text-lg font-medium">Analyzing your audio...</p>
+          </div>
+        </motion.div>
+      )}
       {analysisData && (
         <motion.div
           className="mb-12 p-6 bg-gray-800 rounded-xl shadow-xl"
@@ -850,9 +861,16 @@ export default function InstrumentsPage() {
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.3 }}
+        disabled={isGenerating}
       >
-        Generate Music
-        {isGenerating}
+        {isGenerating ? (
+          <div className="flex items-center justify-center space-x-2">
+            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+            <span>Generating Music...</span>
+          </div>
+        ) : (
+          "Generate Music"
+        )}
       </motion.button>
 
       {/* Audio Player */}
@@ -950,4 +968,3 @@ export default function InstrumentsPage() {
     </motion.div>
   )
 }
-

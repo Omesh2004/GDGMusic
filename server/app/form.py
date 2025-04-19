@@ -25,11 +25,11 @@ logger = logging.getLogger(__name__)
 app = Flask(__name__)
 
 # Connect to Musicgen database
-app.config['MONGO_URI'] = "mongodb+srv://omeshmehta03:Mav6zX7W8tpVyTSo@cluster0.9xnlqg6.mongodb.net/Music?retryWrites=true&w=majority&tls=true&tlsAllowInvalidCertificates=false&ssl=true"
+#app.config['MONGO_URI'] = "mongodb+srv://omeshmehta03:Mav6zX7W8tpVyTSo@cluster0.9xnlqg6.mongodb.net/Music?retryWrites=true&w=majority&tls=true&tlsAllowInvalidCertificates=false&ssl=true"
 #this is for production
-#app.config['MONGO_URI'] = "mongodb://localhost:27017/Musicgen"  
+#app.config['MONGO_URI'] = "mongodb://localhost:27017/Musicgen" Mav6zX7W8tpVyTSo 
 
-#app.config['MONGO_URI'] = "mongodb://localhost:27017/Musicgen"
+app.config['MONGO_URI'] = "mongodb://localhost:27017/Musicgen"
 mongo = PyMongo(app)
 db = mongo.db
 # Define metadata collection
@@ -95,14 +95,23 @@ def generate_music_endpoint():
         # Get JSON data from request
         data = request.json
         
+        if not data:
+            logger.warning("No JSON data provided in request")
+            return jsonify({'error': 'No data provided'}), 400
+        
         # Extract parameters
         prompt = data.get('prompt')
         duration = float(data.get('duration', 5))  # Default to 5 seconds
         username = data.get('username')
         
         # Validate inputs
-        if not prompt or not username:
-            return jsonify({'error': 'Missing required parameters'}), 400
+        if not prompt:
+            logger.warning("Missing prompt parameter")
+            return jsonify({'error': 'Missing prompt parameter'}), 400
+            
+        if not username:
+            logger.warning("Missing username parameter")
+            return jsonify({'error': 'Missing username parameter'}), 400
             
         # Limit duration for resource management
         if duration > 30:
@@ -118,6 +127,7 @@ def generate_music_endpoint():
         })
         
     except Exception as e:
+        logger.error(f"Error in generate_music_endpoint: {str(e)}")
         return jsonify({'error': str(e)}), 500
 
 @app.route('/api/download/<username>', methods=['GET'])
@@ -415,7 +425,7 @@ def check_user():
 def get_random_audio():
     try:
         # Specific user ID to fetch audio from
-        user_id = "user_2tAWzAngClCUsUP1mB61AP12tjV"
+        user_id = "user_2vVhk53kfqhpzAhUfFFpKMZt9Dt"  # Example user ID
         
         # Find the specific user's document
         user = db.users.find_one({"id": user_id})

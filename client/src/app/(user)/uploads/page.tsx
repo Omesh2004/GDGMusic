@@ -247,14 +247,14 @@ export default function AudioFilesPage() {
     )
   }
   return (
-    <div className="container mx-auto px-4 py-6 max-w-6xl">
-      <Card className="mb-8">
+    <div className="container mx-auto px-4 py-6 max-w-6xl bg-black text-white">
+      <Card className="mb-8 bg-black  border-gray-700">
         <CardHeader className="px-6 pt-6 pb-4">
-          <CardTitle className="text-2xl md:text-3xl font-bold flex items-center gap-2">
+          <CardTitle className="text-2xl md:text-3xl font-bold flex items-center gap-2 text-white">
             <Music className="h-6 w-6 text-primary" />
             Your Audio Uplaods
           </CardTitle>
-          <CardDescription className="text-sm md:text-base">Browse and play your uploaded audio files</CardDescription>
+          <CardDescription className="text-sm md:text-base text-gray-300">Browse and play your uploaded audio files</CardDescription>
         </CardHeader>
 
         <CardContent className="p-4 md:p-6">
@@ -269,11 +269,11 @@ export default function AudioFilesPage() {
 
           {/* Player controls (visible when a file is selected) */}
           {nowPlaying && (
-            <div className="bg-gradient-to-b from-secondary/10 to-secondary/30 rounded-lg p-4 mb-6 space-y-4 shadow-md">
+            <div className="bg-gradient-to-b from-gray-900/50 to-gray-700/80 rounded-lg p-4 mb-6 space-y-4 shadow-md">
               <div className="flex flex-col md:flex-row gap-6 items-center">
                 {/* Album/Audio Cover */}
-                <div className="w-32 h-32 rounded-lg overflow-hidden shadow-lg flex-shrink-0 bg-black/10">
-                  <div className="w-full h-full flex items-center justify-center bg-primary/5">
+                <div className="w-32 h-32 rounded-lg overflow-hidden shadow-lg flex-shrink-0 bg-black">
+                  <div className="w-full h-full flex items-center justify-center bg-gray-800">
                     <Music className="h-12 w-12 text-primary/60" />
                   </div>
                 </div>
@@ -281,11 +281,11 @@ export default function AudioFilesPage() {
                 <div className="flex-1 w-full">
                   {/* Audio Info */}
                   <div className="mb-4 text-center md:text-left">
-                    <h3 className="font-semibold text-lg truncate">
+                    <h3 className="font-semibold text-lg truncate text-white">
                       {audioFiles.find((file) => getObjectIdString(file.gridfs_id) === nowPlaying)?.filename ||
                         "Unknown file"}
                     </h3>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-sm text-gray-300">
                       {new Date(
                         audioFiles.find((file) => getObjectIdString(file.gridfs_id) === nowPlaying)?.uploaded_at || "",
                       ).toLocaleString(undefined, { dateStyle: "medium" })}
@@ -303,7 +303,7 @@ export default function AudioFilesPage() {
                       disabled={!duration}
                       className="[&_[role=slider]]:h-4 [&_[role=slider]]:w-4 [&_[role=slider]]:shadow-md"
                     />
-                    <div className="flex justify-between text-xs text-muted-foreground">
+                    <div className="flex justify-between text-xs text-gray-300">
                       <span>{formatTime(currentTime)}</span>
                       <span>{formatTime(duration)}</span>
                     </div>
@@ -312,7 +312,7 @@ export default function AudioFilesPage() {
                   {/* Controls */}
                   <div className="flex items-center justify-center md:justify-between mt-4">
                     <div className="flex items-center gap-2">
-                      <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full" onClick={toggleMute}>
+                      <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full text-gray-300 hover:text-white hover:bg-gray-700" onClick={toggleMute}>
                         {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
                       </Button>
                       <div className="w-20 hidden md:block">
@@ -328,7 +328,7 @@ export default function AudioFilesPage() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full" disabled={true}>
+                      <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full text-gray-300 hover:bg-gray-700" disabled={true}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -349,7 +349,7 @@ export default function AudioFilesPage() {
                       <Button
                         variant="default"
                         size="icon"
-                        className="h-12 w-12 rounded-full shadow-md"
+                        className="h-12 w-12 rounded-full shadow-md bg-primary hover:bg-primary/90"
                         onClick={() => handlePlay(nowPlaying, "")}
                         disabled={isLoading}
                       >
@@ -362,7 +362,7 @@ export default function AudioFilesPage() {
                         )}
                       </Button>
 
-                      <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full" disabled={true}>
+                      <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full text-gray-300 hover:bg-gray-700" disabled={true}>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           width="24"
@@ -381,7 +381,7 @@ export default function AudioFilesPage() {
                       </Button>
                     </div>
 
-                    <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full hidden md:flex" disabled={true}>
+                    <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full hidden md:flex text-gray-300 hover:bg-gray-700" disabled={true}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -413,17 +413,17 @@ export default function AudioFilesPage() {
 
           {/* Error message */}
           {error && (
-            <div className="bg-destructive/10 text-destructive text-center p-4 rounded-md mb-6 text-sm">{error}</div>
+            <div className="bg-red-900/30 text-red-300 text-center p-4 rounded-md mb-6 text-sm">{error}</div>
           )}
 
           {/* Empty state */}
           {audioFiles.length === 0 && !isLoading && !error && (
-            <div className="text-center py-12 border-2 border-dashed rounded-lg bg-secondary/5">
-              <div className="w-20 h-20 mx-auto bg-secondary/20 rounded-full flex items-center justify-center mb-4">
+            <div className="text-center py-12 border-2 border-dashed border-gray-700 rounded-lg bg-gray-800/50">
+              <div className="w-20 h-20 mx-auto bg-gray-700 rounded-full flex items-center justify-center mb-4">
                 <Music className="h-10 w-10 text-primary/70" />
               </div>
-              <h3 className="text-lg font-medium mb-1">No audio files found</h3>
-              <p className="text-muted-foreground text-sm">Upload audio files to see them here</p>
+              <h3 className="text-lg font-medium mb-1 text-white">No audio files found</h3>
+              <p className="text-gray-300 text-sm">Upload audio files to see them here</p>
             </div>
           )}
 
@@ -434,18 +434,18 @@ export default function AudioFilesPage() {
               return (
                 <Card
                   key={idString}
-                  className={`transition-colors hover:bg-secondary/10 ${
-                    nowPlaying === idString ? "border-primary bg-primary/5" : ""
+                  className={`transition-colors bg-black hover:bg-gray-900 ${
+                    nowPlaying === idString ? "border-primary bg-gray-700" : "bg-gray-800 border-gray-700"
                   }`}
                 >
                   <CardContent className="p-4">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 rounded-md bg-secondary/30 flex items-center justify-center flex-shrink-0">
+                      <div className="w-10 h-10 rounded-md bg-gray-700 flex items-center justify-center flex-shrink-0">
                         <Music className="h-5 w-5 text-primary/70" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <h3 className="font-medium text-sm sm:text-base truncate">{file.filename}</h3>
-                        <p className="text-xs text-muted-foreground">
+                        <h3 className="font-medium text-sm sm:text-base truncate text-white">{file.filename}</h3>
+                        <p className="text-xs text-gray-300">
                           {new Date(file.uploaded_at).toLocaleString(undefined, { dateStyle: "medium" })}
                         </p>
                       </div>
@@ -455,7 +455,7 @@ export default function AudioFilesPage() {
                           variant={nowPlaying === idString ? "default" : "outline"}
                           size="sm"
                           className={`min-w-[40px] w-10 h-10 rounded-full p-0 ${
-                            nowPlaying === idString && isPlaying ? "bg-primary" : ""
+                            nowPlaying === idString && isPlaying ? "bg-primary" : "border-gray-600 bg-gray-800 text-white hover:bg-gray-700"
                           }`}
                           disabled={isLoading && nowPlaying !== idString}
                         >
@@ -471,7 +471,7 @@ export default function AudioFilesPage() {
                           onClick={() => handleDeleteClick(file.gridfs_id)}
                           variant="ghost"
                           size="sm"
-                          className="min-w-[40px] w-10 h-10 rounded-full p-0 hover:bg-destructive/10 hover:text-destructive"
+                          className="min-w-[40px] w-10 h-10 rounded-full p-0 hover:bg-red-900/20 hover:text-red-300 text-gray-300"
                           disabled={isLoading}
                         >
                           <Trash2 className="h-4 w-4" />
@@ -488,18 +488,18 @@ export default function AudioFilesPage() {
 
       {/* Delete Confirmation Modal - Placed outside the Card component */}
       <Dialog open={deleteModalOpen} onOpenChange={setDeleteModalOpen}>
-        <DialogContent>
+        <DialogContent className="bg-gray-800 text-white border-gray-700">
           <DialogHeader>
-            <DialogTitle>Confirm Deletion</DialogTitle>
-            <DialogDescription>
+            <DialogTitle className="text-white">Confirm Deletion</DialogTitle>
+            <DialogDescription className="text-gray-300">
               Are you sure you want to delete this audio file? This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDeleteModalOpen(false)} disabled={isLoading}>
+            <Button variant="outline" onClick={() => setDeleteModalOpen(false)} disabled={isLoading} className="border-gray-600 bg-gray-800 text-white hover:bg-gray-700">
               Cancel
             </Button>
-            <Button variant="destructive" onClick={() => handleDelete(fileToDelete)} disabled={isLoading}>
+            <Button variant="destructive" onClick={() => handleDelete(fileToDelete)} disabled={isLoading} className="bg-red-700 hover:bg-red-800">
               {isLoading ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Trash2 className="h-4 w-4 mr-2" />}
               Delete Permanently
             </Button>

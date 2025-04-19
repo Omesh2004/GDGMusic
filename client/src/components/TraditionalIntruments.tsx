@@ -47,7 +47,7 @@ export const TraditionalInstruments = ({
   instruments = defaultInstruments 
 }: TraditionalInstrumentsProps) => {
   return (
-    <section id="instruments" className="py-24 bg-white">
+    <section id="instruments" className="py-24 bg-black text-white">
       <div className="container mx-auto px-4">
         <motion.div 
           initial="hidden"
@@ -69,7 +69,7 @@ export const TraditionalInstruments = ({
                 variants={fadeIn}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                className="bg-card rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 shadow-white/20 hover:shadow-white/30"
+                className="bg-black text-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 shadow-white/20 hover:shadow-white/30"
               >
                 <div className="h-48 overflow-hidden">
                   <Image 

@@ -62,10 +62,10 @@ const pulseAnimation = {
 const Index = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
   const [currentWord, setCurrentWord] = useState(0);
   const words = ["Harmony", "Melody", "Rhythm", "Tradition", "Expression"];
   const [isPlayerOpen, setIsPlayerOpen] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 10) {
@@ -94,15 +94,11 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Navbar */}
-     
-
-      {/* Hero Section */}
+    <div className="min-h-screen bg-black text-white">
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
         {/* Background Elements */}
-        <div className="absolute inset-0 z-0 ">
-          <div className="absolute top-0 left-0 w-full h-full bg-gradient-radial from-silk to-background opacity-80"></div>
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-radial from-black to-gray-900 opacity-80"></div>
           
           {/* Animated circles with Framer Motion */}
           <motion.div 
@@ -168,11 +164,11 @@ const Index = () => {
               variants={fadeIn}
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
-              <Button className="bg-saffron hover:bg-saffron/90 text-white flex items-center gap-2 text-lg px-6 py-6">
+              <Button className="bg-black hover:bg-saffron/90 text-white flex items-center gap-2 text-lg px-6 py-6">
                 <Play size={20} />
                 Listen to Samples
               </Button>
-              <Button variant="outline" className="border-saffron text-saffron hover:bg-saffron/10 text-lg px-6 py-6">
+              <Button variant="outline" className="border-saffron text-saffron bg-black text-lg px-6 py-6">
                 Discover Traditions
               </Button>
             </motion.div>
@@ -190,17 +186,13 @@ const Index = () => {
         </motion.div>
       </section>
 
-      {/* About Section */}
-     
-
       {/* Instruments Section */}
-      <section id="instruments" className="py-24 bg-white">
-    
-      <TraditionalInstruments/>
+      <section id="instruments" className="py-24 bg-black text-white">
+        <TraditionalInstruments/>
       </section>
 
       {/* Ragas Section */}
-      <section id="ragas" className="py-24 bg-gradient-to-b from-white to-silk/30">
+      <section id="ragas" className="py-24 bg-black text-white">
         <div className="container mx-auto px-4">
           <motion.div 
             initial="hidden"
@@ -255,7 +247,7 @@ const Index = () => {
                   variants={fadeIn}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                  className={`${raga.color} text-white rounded-xl p-6 shadow-lg`}
+                  className={`${raga.color} text-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 shadow-white/20 hover:shadow-white/30 cursor-pointer`}
                 >
                   <h3 className="text-xl font-serif font-semibold mb-2">Raga {raga.name}</h3>
                   <p className="opacity-80 mb-1"><span className="font-medium">Time:</span> {raga.time}</p>
@@ -268,7 +260,7 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-saffron to-peacock text-white">
+      <section className="py-24 bg-gradient-to-r from-saffron/20 to-peacock/20 text-white">
         <div className="container mx-auto px-4">
           <motion.div 
             initial="hidden"
@@ -298,13 +290,14 @@ const Index = () => {
             >
              <Button 
             onClick={() => setIsPlayerOpen(true)}
-            className="bg-white text-saffron hover:bg-white/90 text-lg px-6 py-6"
+            variant="outline"
+            className="bg-white text-saffron hover:bg-gray-900 bg-black border-white hover:text-white text-lg px-6 py-6"
           >
             Start Listening
           </Button>
           <Button 
             variant="outline" 
-            className="border-white text-white hover:bg-white/10 text-lg px-6 py-6"
+            className="border-white hover:text-white hover:bg-gray-800 bg-black text-white text-lg px-6 py-6"
           >
             Browse Collections
           </Button>
@@ -312,35 +305,36 @@ const Index = () => {
           </motion.div>
         </div>
       </section>
+
       {isPlayerOpen && (
-           <motion.div 
-           initial={{ opacity: 0 }} 
-           animate={{ opacity: 1 }} 
-           exit={{ opacity: 0 }}
-           className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4"
-         >
-           <motion.div 
-             initial={{ scale: 0.9 }} 
-             animate={{ scale: 1 }} 
-             transition={{ duration: 0.3 }}
-             className="relative bg-gray-900 text-white rounded-xl p-6 max-w-md w-full shadow-xl"
-           >
-             <button 
-               onClick={() => setIsPlayerOpen(false)}
-               className="absolute top-4 right-4 text-white hover:text-gray-400 transition z-10"
-             >
-               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                 <line x1="18" y1="6" x2="6" y2="18"></line>
-                 <line x1="6" y1="6" x2="18" y2="18"></line>
-               </svg>
-             </button>
-             <MusicPlayer />
-           </motion.div>
-         </motion.div>
-    )
-  }
+        <motion.div 
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }} 
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+        >
+          <motion.div 
+            initial={{ scale: 0.9 }} 
+            animate={{ scale: 1 }} 
+            transition={{ duration: 0.3 }}
+            className="relative bg-gray-900 text-white rounded-xl p-6 max-w-md w-full shadow-xl"
+          >
+            <button 
+              onClick={() => setIsPlayerOpen(false)}
+              className="absolute top-4 right-4 text-white hover:text-gray-400 transition z-10"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+            <MusicPlayer />
+          </motion.div>
+        </motion.div>
+      )}
+
       {/* Footer */}
-      <footer className="bg-background py-12">
+      <footer className="bg-black py-12">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between gap-8">
             <div className="max-w-xs">
@@ -350,44 +344,44 @@ const Index = () => {
                   Raga Realm
                 </span>
               </a>
-              <p className="text-muted-foreground">
+              <p className="text-gray-400">
                 Exploring the rich traditions and timeless beauty of Indian classical music.
               </p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
               <div>
-                <h3 className="font-semibold mb-4">Explore</h3>
+                <h3 className="font-semibold mb-4 text-white">Explore</h3>
                 <ul className="space-y-2">
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">Ragas</a></li>
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">Instruments</a></li>
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">Artists</a></li>
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">History</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">Ragas</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">Instruments</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">Artists</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">History</a></li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold mb-4">Resources</h3>
+                <h3 className="font-semibold mb-4 text-white">Resources</h3>
                 <ul className="space-y-2">
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">Blog</a></li>
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">Tutorials</a></li>
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">Events</a></li>
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">FAQ</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">Blog</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">Tutorials</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">Events</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">FAQ</a></li>
                 </ul>
               </div>
               <div>
-                <h3 className="font-semibold mb-4">Connect</h3>
+                <h3 className="font-semibold mb-4 text-white">Connect</h3>
                 <ul className="space-y-2">
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">Contact</a></li>
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">Newsletter</a></li>
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">Community</a></li>
-                  <li><a href="#" className="text-muted-foreground hover:text-saffron">Support</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">Contact</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">Newsletter</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">Community</a></li>
+                  <li><a href="#" className="text-gray-400 hover:text-saffron">Support</a></li>
                 </ul>
               </div>
             </div>
           </div>
 
-          <div className="border-t border-border mt-12 pt-6 text-center text-muted-foreground">
-            <p>© {new Date().getFullYear()} Raga Realm. All rights reserved.</p>
+          <div className="border-t border-gray-800 mt-12 pt-6 text-center text-gray-400">
+            <p>© {new Date().getFullYear()} Harmony Ai. All rights reserved.</p>
           </div>
         </div>
       </footer>

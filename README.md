@@ -98,3 +98,13 @@ NEXT_PUBLIC_API_URL=http://127.0.0.1:5000
 
 
 ```
+
+
+https://github.com/user-attachments/assets/64bc6d23-4bbb-4923-bcd6-81959537c456
+This project is a tribute to the timeless legacy of Indian classical music, driven by our deep passion to revive and celebrate its traditional roots.
+
+Our goal is to bridge the gap between heritage and technology, making the soulful rhythms of this ancient art more accessible to the modern world.
+
+This is just the beginning—Version 2 is on the way with exciting new features and experiences. Join us in reimagining Indian classical music for today and tomorrow.
+
+

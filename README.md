@@ -68,9 +68,10 @@ This project is a full-stack web application designed to help users **analyze**,
 
 
 ---
-
-## 🛠️ Setup Instructions
+##DEMO VIDEO
 https://github.com/user-attachments/assets/64bc6d23-4bbb-4923-bcd6-81959537c456
+## 🛠️ Setup Instructions
+
 ### Prerequisites:
 - Python 3.10+
 - Node.js 18+

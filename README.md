@@ -1,4 +1,4 @@
-# 🎵 Indian Classical Music Explorer
+# 🎵 Indian Classical Music Explorer(Harmony ai)
 
 A full-stack web application to **analyze**, **generate**, and **explore** the world of **Indian classical music**, blending the richness of tradition with the power of modern technology.
 

@@ -1,111 +1,126 @@
-# 🎵 Indian Classical Music Explorer
-![image](https://github.com/user-attachments/assets/58016a8c-ecd8-405f-ad18-d8bc235851c9)
+🎵 Indian Classical Music Explorer
 
 
+A full-stack web application built to help users analyze, generate, and explore the world of Indian classical music, combining tradition with technology.
 
-This project is a full-stack web application designed to help users **analyze**, **generate**, and **explore** the world of **Indian classical music**.
+✨ About the Project
+This project is a tribute to the timeless legacy of Indian classical music, driven by our passion to revive and celebrate its traditional roots.
 
-## 🏗️ Project Structure
+We aim to bridge the gap between heritage and innovation—making the soulful rhythms and intricate melodies of this ancient art form accessible to the modern world.
+
+🚀 Version 2 coming soon with expanded features, richer insights, and an even more immersive experience.
+
+🚀 Features Overview
+🔐 Authentication & Roles
+Integrated with Clerk for secure authentication.
+
+Role-based access:
+
+Admin
+
+Creator
+
+Listener
+
+🎧 Music Analysis
+Upload audio to analyze genre, instrument, and musical features.
+
+Uses Librosa to extract features (tempo, pitch, chroma, etc.).
+
+Powered by custom ML models:
+
+🎼 Genre Classification
+
+🎻 Instrument Detection
+
+🎼 Music Generation
+Generate new Indian classical samples.
+
+Backed by a custom-trained generation model that understands ragas and rhythmic patterns.
+
+🔍 Music Explorer
+Discover curated tracks, ragas, instruments, and artists.
+
+Explore the rich metadata and heritage of Indian classical music.
+
+🧬 Tech Stack
+Layer	Tech Stack
+Frontend	Next.js, Tailwind CSS, Clerk Authentication
+Backend	Flask, MongoDB
+ML Models	Custom genre/instrument classifiers, MusicGen
+Audio	Librosa (Python) for feature extraction
+
+🔁 App Workflow
+User Sign Up/Login via Clerk.
+
+Roles assigned dynamically (default: listener).
+
+Based on role, user can:
+
+Analyze uploaded music.
+
+Generate new compositions.
+
+Explore traditional musical knowledge.
+
+Admin/Creators can upload new datasets and retrain models.
+
+🖼️ UI Preview
+🔍 Analyze Page
 
 
----
-
-## 🚀 Features Overview
-
-### 🧑‍💼 Authentication & Roles
-- Uses [Clerk](https://clerk.com) for user authentication.
-- Role-based access (admin, creator, listener) for different levels of interaction.
-
-### 🧠 Music Analysis
-- Upload an audio file to analyze its **genre**, **instrument**, and **musical characteristics**.
-- Uses **Librosa** to extract features like tempo, pitch, chroma, etc.
-- Custom-built **ML models** to detect:
-  - 🎼 Genre of the music.
-  - 🎻 Instruments used.
-
-### 🎶 Music Generation
-- Users can generate new Indian classical music samples.
-- Backed by a **custom-trained music generation model** that understands ragas and rhythmic patterns.
-
-### 🔍 Explore
-- Dive into curated pieces, artist highlights, and discover ragas, thaats, and instruments with rich metadata.
-
----
-
-## 🧬 Tech Stack
-
-| Layer     | Tech                                 |
-|-----------|--------------------------------------|
-| Frontend  | Next.js, Tailwind CSS, Clerk Auth    |
-| Backend   | Flask, MongoDB                       |
-| ML Models | Custom-trained genre/instrument models, MusicGen |
-| Audio     | Librosa for feature extraction       |
-
----
-
-## 🔄 Workflow
-
-1. **User Sign Up** via Clerk
-2. **Role is assigned** (default: listener)
-3. User can:
-   - Navigate to **Analyze** tab: upload music → get genre + instrument prediction.
-   - Use the **Generate** tab: generate music via our model.
-   - Go to **Explore**: learn about Indian classical music, artists, and ragas.
-4. Admins/creators have access to additional tools to upload training data or retrain models.
-
----
-
-## 🖼️ Screenshots
-
-### Analyze Page
-<!-- Upload Screenshot of Analyze Page -->
-![Analyze Screenshot]![image](https://github.com/user-attachments/assets/fb080ef4-eed0-4f9b-9dff-e90c22e28508)
+🎶 Generate Page
 
 
-### Generate Page
-<!-- Upload Screenshot of Generate Page -->
-![Generate Screenshot]![image](https://github.com/user-attachments/assets/734fe622-6d20-4520-9741-324b65b7a40e)
+🎥 Demo Video
 
 
----
-##DEMO VIDEO
-https://github.com/user-attachments/assets/64bc6d23-4bbb-4923-bcd6-81959537c456
-## 🛠️ Setup Instructions
+📺 Click the image to watch the full walkthrough on YouTube.
 
-### Prerequisites:
-- Python 3.10+
-- Node.js 18+
-- MongoDB running locally or via cloud (e.g., MongoDB Atlas)
+🛠️ Setup Instructions
+🔧 Prerequisites
+Python 3.10+
 
-### 1. Clone the repository:
-```bash
+Node.js 18+
+
+MongoDB (local or MongoDB Atlas)
+
+🚀 Getting Started
+bash
+Copy
+Edit
+# Clone the repository
 git clone https://github.com/your-username/indian-classical-music-explorer.git
 cd indian-classical-music-explorer
-to run server file 
+🔌 Backend Setup (Flask)
+bash
+Copy
+Edit
 cd server
 python -m venv venv
- venv/bin/activate  # or venv\Scripts\activate on Windows
+
+# On Windows:
+venv\Scripts\activate
+# On macOS/Linux:
+source venv/bin/activate
+
 pip install -r requirements.txt
 python app.py
-
+💻 Frontend Setup (Next.js)
+bash
+Copy
+Edit
 cd ../client
 npm install
 npm run dev
+🛠️ Create a .env.local file in the /client directory with the following:
 
-in the client folder create a .env.local file and it should have
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=**************
-CLERK_SECRET_KEY=*************
+env
+Copy
+Edit
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_key
+CLERK_SECRET_KEY=your_key
 NEXT_PUBLIC_API_URL=http://127.0.0.1:5000
-
-
-```
-
-
-
-This project is a tribute to the timeless legacy of Indian classical music, driven by our deep passion to revive and celebrate its traditional roots.
-
-Our goal is to bridge the gap between heritage and technology, making the soulful rhythms of this ancient art more accessible to the modern world.
-
-This is just the beginning—Version 2 is on the way with exciting new features and experiences. Join us in reimagining Indian classical music for today and tomorrow.
-
-
+🙌 Join the Journey
+Help us reimagine, revive, and celebrate Indian classical music.
+✨ Stay tuned for more in Version 2!
